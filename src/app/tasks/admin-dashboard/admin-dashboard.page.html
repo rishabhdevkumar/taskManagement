@@ -1,0 +1,598 @@
+<!-- ----------------------- split pane(menu bar) ------------------- -->
+
+<ion-menu menuId="main-menu" contentId="main" class="split">
+  <!-- <ion-header>
+    <ion-toolbar color="light">
+      <ion-title slot="start"><b>Menu Bar</b></ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="close-outline" slot="start"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header> -->
+  <div class="profile-container">
+    <img src="../../../assets/images/old.jpg" alt="Profile Image" class="profile">
+  </div>
+  <ion-card-title class="profile-name">{{self.first_name}} {{self.last_name}}</ion-card-title>
+  <ion-card-subtitle class="profile-title">Web Developer</ion-card-subtitle>
+  <br>
+  <div class="menu-item" (click)="currentStep = 1">
+    <ion-icon name="home" class="menu-icon"></ion-icon>
+    <ion-label><b>Dashboard</b></ion-label>
+  </div>
+  <div class="menu-item" (click)="currentStep = 2">
+    <ion-icon name="person-add" class="menu-icon"></ion-icon>
+    <ion-label><b>Add Users</b></ion-label>
+  </div>
+  <div class="menu-item" (click)="currentStep = 3">
+    <ion-icon name="people" class="menu-icon"></ion-icon>
+    <ion-label><b>All Users</b></ion-label>
+  </div>
+  <div class="menu-item" (click)="currentStep = 4">
+    <ion-icon name="add" class="menu-icon"></ion-icon>
+    <ion-label><b>Create Tasks</b></ion-label>
+  </div>
+  <div class="menu-item" (click)="currentStep = 5">
+    <ion-icon name="document-text-outline" class="menu-icon"></ion-icon>
+    <ion-label><b>All Tasks</b></ion-label>
+  </div>
+  <div class="menu-item" (click)="currentStep = 6">
+    <ion-icon name="earth" class="menu-icon"></ion-icon>
+    <ion-label><b>Country</b></ion-label>
+  </div>
+  <div class="menu-item" (click)="currentStep = 7">
+    <ion-icon name="earth" class="menu-icon"></ion-icon>
+    <ion-label><b>state</b></ion-label>
+  </div>
+  <div class="menu-item" (click)="currentStep = 8">
+    <ion-icon name="earth" class="menu-icon"></ion-icon>
+    <ion-label><b>Destrict</b></ion-label>
+  </div>
+    <ion-item color="primary">
+      <ion-icon name="Settings" class="ion-margin-end"></ion-icon>
+      <ion-label>
+        <b>Setting</b>
+      </ion-label>
+      <ion-buttons>
+        <ion-button id="profile-menu">
+          <ion-icon name="ellipsis-horizontal" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="profile-menu" triggerAction="click" [dismissOnSelect]="true">
+          <ng-template>
+            <ion-content>
+              <ion-item [button]="true" (click)="change_profile()">
+                <ion-icon name="pencil-outline" slot="start"></ion-icon>
+                change profile
+              </ion-item>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-buttons>
+    </ion-item>
+</ion-menu>
+<ion-router-outlet id="main"></ion-router-outlet>
+<!-- ----------------- dashboard ----------------- content -------------- -->
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    
+    <ion-title>
+      <h1><b>Admin Dashboard</b></h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<!-- --------------- Dashboard ------------- option ------------- -->
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="grid">
+    <header>
+      <ion-buttons slot="start">
+        <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons>
+    </header>
+    <ion-row *ngIf="currentStep === 1">
+      <ion-card class="crd">
+        <ion-row>
+          <ion-col sizeMd="3.5" sizeSm="2" offset="0.4">
+            <ion-card class="crd1">
+              <ion-card-header>
+                <ion-icon name="people" class="icon-large"></ion-icon>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-title class="para">
+                  <h1>{{ getTotalRegisteredUsers() }}</h1>
+                  Registered Users
+                </ion-title>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col sizeMd="3.5" sizeSm="2" offset="0.4">
+            <ion-card class="crd1">
+              <ion-card-header>
+                <ion-icon name="clipboard-outline" class="icon-large"></ion-icon>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-title  class="para1">
+                  <h1>{{ Totalgiventask() }}</h1>
+                  Given Tasks
+                </ion-title>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col sizeMd="3.5" sizeSm="2" offset="0.4">
+            <ion-card class="crd1">
+              <ion-card-header>
+                <ion-icon name="logo-usd" class="icon-large"></ion-icon>
+                <ion-title class="para2">
+                  <h1></h1>
+                  Earnings
+                </ion-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col sizeMd="7" sizeSm="4">
+            <ion-card>
+              <ion-card-header>
+                <ion-row class="header-row">
+                  <ion-col size="3">
+                    <ion-title class="header-title">Sl.No</ion-title>
+                  </ion-col>
+                  <ion-col size="3">
+                    <ion-title class="header-title">Name</ion-title>
+                  </ion-col>
+                  <ion-col size="3">
+                    <ion-title class="header-title">Email</ion-title>
+                  </ion-col>
+                  <ion-col size="3">
+                    <ion-title class="header-title">Tasks</ion-title>
+                  </ion-col>
+                </ion-row>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-row>
+                  <ion-col></ion-col>
+                  <ion-col></ion-col>
+                  <ion-col></ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col sizeMd="5" sizeSm="2">
+            <ion-card>
+              <ion-card-header>
+                <ion-title>show calender</ion-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-item>
+                  <ion-datetime [(ngModel)]="selectedDate" displayFormat="MMMM DD, YYYY" min="2020-01-01"
+                    max="2025-12-31" placeholder="Select a date"></ion-datetime>
+                </ion-item>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+    <!-- -------------- users --------- add ----------section -------------- -->
+
+    <div>
+      <ion-row *ngIf="currentStep === 2">
+        <ion-col sizeMd="8" sizeSm="4" offset="2.5">
+          <ion-card class="card">
+            <ion-card-header>
+              <ion-toolbar color="warning" class="tool">
+                <ion-icon name="person-add" slot="start"></ion-icon>
+                <ion-title>Add users</ion-title>
+              </ion-toolbar>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <ion-input label="name" labelPlacement="floating" placeholder="enter user name"
+                    [(ngModel)]="add.name"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-input label="Email" labelPlacement="floating" placeholder="enter user email"
+                    [(ngModel)]="add.email"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-input label="Address" labelPlacement="floating" placeholder="enter user address"
+                    [(ngModel)]="add.address"></ion-input>
+                </ion-col>
+              </ion-row>
+              <br>
+              <ion-row>
+                <ion-col>
+                  <ion-input label="Date of Birth" labelPlacement="floating" type="Date"
+                    [(ngModel)]="add.dob"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-input label="phone no" labelPlacement="floating" [(ngModel)]="add.phone"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-input label="password" labelPlacement="floating" placeholder="enter user password"
+                    [(ngModel)]="add.password"></ion-input>
+                </ion-col>
+              </ion-row>
+              <br>
+              <ion-buttons>
+                <ion-button (click)="submit()">Submit</ion-button>
+              </ion-buttons>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- --------------- All --------- users ----------- options ---------------- -->
+
+    <div>
+      <ion-row *ngIf="currentStep === 3">
+        <ion-col sizeMd="8" sizeSm="4" offset="2.5">
+          <ion-card class="card1">
+            <ion-card-header>
+              <ion-toolbar color="warning" class="tool">
+                <ion-icon name="people" slot="start"></ion-icon>
+                <ion-title>All Users</ion-title>
+              </ion-toolbar>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-row>
+                <ion-col sizeMd="4">
+                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Name"
+                    placeholder="enter user name"></ion-input>
+                </ion-col>
+                <ion-col size-md="4">
+                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Email"
+                    placeholder="enter user email"></ion-input>
+                </ion-col>
+                <ion-button (click)="search()">Search</ion-button>
+              </ion-row>
+            </ion-card-content>
+            <table style="width: 100%; text-align: center; " border="2px">
+              <tr class="table-header">
+                <td>S.No</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Dob</td>
+                <td>Phone</td>
+                <td>Address</td>
+                <td>Action</td>
+                <td>Edit</td>
+                <td>Delete</td>
+              </tr>
+              <tr *ngFor="let user of filteredUsers" class="row1">
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.dob}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.is_active ? 'Active' : 'Inactive'}}</td>
+                <td>
+                  <ion-icon name="create-outline" class="ion-padding" (click)="open_add()"
+                      (click)="editUser(user)"></ion-icon>
+                </td>
+                <td>
+                  <ion-icon name="trash-outline" class="ion-padding"></ion-icon>
+                </td>
+              </tr>
+            </table>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- -------------------- update ---------- user ---------- Details ------------------ -->
+
+    <ion-modal [isOpen]="is_add_open" (didDismiss)="close_add()">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar color="light">
+            <ion-title>Edit User</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="close_add()">
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-input fill="outline" label="Name" labelPlacement="floating" [(ngModel)]="selectedUser.name"
+            class="edit1"></ion-input><br>
+          <ion-input fill="outline" label="Email" labelPlacement="floating" [(ngModel)]="selectedUser.email"
+            type="email" class="edit2"></ion-input><br>
+          <ion-input fill="outline" label="Pssword" labelPlacement="floating" [(ngModel)]="selectedUser.password"
+            type="password" class="edit3"></ion-input><br>
+          <ion-input fill="outline" label="Mobile" labelPlacement="floating" [(ngModel)]="selectedUser.phone"
+            class="edit4"></ion-input><br>
+          <ion-input fill="outline" label="Date of Birth" labelPlacement="floating" [(ngModel)]="selectedUser.dob"
+            class="edit5"></ion-input><br>
+          <ion-input fill="outline" label="Address" labelPlacement="floating" [(ngModel)]="selectedUser.address"
+            class="edit6"></ion-input><br>
+        </ion-content>
+        <ion-footer>
+          <ion-toolbar color="light">
+            <ion-buttons slot="end">
+              <ion-button expand="full" color="success" (click)="updateUser()">Save Changes</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+      </ng-template>
+    </ion-modal>
+    <!-- ------------------- tasks ------------ add ----------- option ------------------- -->
+    <div>
+      <ion-row *ngIf="currentStep === 4">
+        <ion-col sizeMd="8" sizeSm="4" offset="2.5">
+          <ion-card class="card2">
+            <ion-card-header>
+              <ion-toolbar color="tertiary" class="tool">
+                <ion-icon name="person-add" slot="start"></ion-icon>
+                <ion-title>Add Tasks</ion-title>
+              </ion-toolbar>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input label="Title Name" placeholder="Enter task title name" labelPlacement="floating"
+                [(ngModel)]="a.name"></ion-input>
+              <br>
+              <ion-label>Description</ion-label>
+              <textarea class="area" placeholder="Description" [(ngModel)]="a.description"></textarea>
+              <br>
+              <ion-buttons>
+                <ion-button (click)="task_submit()">submit</ion-button>
+              </ion-buttons>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- -------------- All ---------- tasks ---------- section ----------------- -->
+    <ion-row *ngIf="currentStep === 5">
+      <ion-col sizeMd="8" sizeSm="4" offset="2.5">
+        <ion-card class="card3">
+          <ion-card-header>
+            <ion-toolbar color="primary" class="tool">
+              <ion-icon name="document-text-outline" slot="start"></ion-icon>
+              <ion-title>All Tasks</ion-title>
+            </ion-toolbar>
+          </ion-card-header>
+          <ion-card-content>
+            <!-- <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUsers()" placeholder="Search bar">
+            </ion-searchbar> -->
+            <br>
+            <div *ngIf="filtertasks.length> 0; else noUsers">
+              <ion-row>
+                <ion-col><b>SL.NO</b></ion-col>
+                <ion-col><b>NAME</b></ion-col>
+                <ion-col><b>DESCRIPTION</b></ion-col>
+                <ion-col><b>Action</b></ion-col>
+              </ion-row>
+              <br>
+              <ion-row *ngFor="let tsk of filtertasks">
+                <ion-col>{{ tsk.id }}</ion-col>
+                <ion-col>{{ tsk.name }}</ion-col>
+                <ion-col>{{ tsk.description }}</ion-col>
+                <ion-col>
+                  <ion-button color="primary">Action</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>
+            <!----- No Tasks Found --------->
+            <ng-template #noUsers>
+              <p>No Tasks found.</p>
+            </ng-template>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <!-- ------------------- country ------------- section -------------- -->
+
+    <div *ngIf="currentStep === 6">
+      <ion-row>
+        <ion-col sizeMd="8" sizeSm="3" offset="2">
+          <ion-card class="card4">
+            <ion-card-header>
+              <ion-toolbar color="warning" class="tool">
+                <ion-icon name="earth" slot="start"></ion-icon>
+                <ion-title>All country</ion-title>
+                <ion-icon name="chevron-back" slot="end" class="ion-padding"></ion-icon> 
+                <ion-icon name="chevron-forward" slot="end" class="ion-padding"></ion-icon>
+              </ion-toolbar>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-row>
+                <ion-col sizeMd="4">
+                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Code"
+                    placeholder="enter country code"></ion-input>
+                </ion-col>
+                <ion-col size-md="4">
+                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Name"
+                    placeholder="enter country name"></ion-input>
+                </ion-col>
+                <ion-col size-md="4">
+                  <ion-select label="Locations" labelPlacement="floating" fill="outline" [(ngModel)]="c.id">
+                    <ion-select-option value="0">All Locations</ion-select-option>
+                    <ion-select-option *ngFor="let c of co" [value]="c.id">{{c.name}}</ion-select-option>
+                  </ion-select>
+                </ion-col>
+                <ion-button (click)="search()">Search</ion-button>
+              </ion-row>
+            </ion-card-content>
+            <table style="width: 100%; text-align: center; " border="2px">
+              <tr class="country-header">
+                <td>S.No</td>
+                <td>Code</td>
+                <td>Name</td>
+                <td>Short_Name</td>
+                <td>Status</td>
+              </tr>
+              <tr *ngFor="let c of co; index as idx" class="row">
+                <td>{{idx+1}}</td>
+                <td>{{c.code}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.short_name}}</td>
+                <td>
+                  <ion-icon name="pencil-outline" (click)="open_country_add()" (click)="editcountry(c)"></ion-icon>
+                </td>
+              </tr>
+            </table>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- --------------- update --------------- countries ---------- section ------------ -->
+    <ion-modal [isOpen]="is_countryadd_open" (didDismiss)="close_country_add()">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar color="light">
+            <ion-title>Edit Country</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="close_country_add()">
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-input label="Country Code" labelPlacement="floating" [(ngModel)]="selectedcountry.code"
+            class="edit1"></ion-input><br>
+          <ion-input label="Country Name" labelPlacement="floating" [(ngModel)]="selectedcountry.name"
+            class="edit2"></ion-input><br>
+          <ion-input label="Country Short_Name" labelPlacement="floating" [(ngModel)]="selectedcountry.short_name"
+            class="edit3"></ion-input><br>
+        </ion-content>
+        <ion-footer>
+          <ion-toolbar color="light">
+            <ion-buttons slot="end">
+              <ion-button expand="full" color="success" (click)="updatecountry()">Save Changes</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+      </ng-template>
+    </ion-modal>
+    <!-- ----------------- state ------------- section ------------------ -->
+
+    <div *ngIf="currentStep === 7">
+      <ion-row>
+        <ion-col size-md="6" sizeSm="3" offset="2.5">
+          <ion-card class="card5">
+            <ion-card-header>
+              <ion-toolbar color="warning" class="tool">
+                <ion-icon name="earth" slot="start"></ion-icon>
+                <ion-title> All State</ion-title>
+              </ion-toolbar>
+              <!-- <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterstates()"
+                placeholder="Search users"></ion-searchbar> -->
+            </ion-card-header>
+            <ion-card-content>
+
+              <ion-row>
+                <ion-col sizeMd="4">
+                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Name"
+                    placeholder="enter state name" [(ngModel)]="s.name"></ion-input>
+                </ion-col>
+                <ion-col size-md="4">
+                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Short_name"
+                    placeholder="enter state short_name" [(ngModel)]="s.short_name"></ion-input>
+                </ion-col>
+                <ion-col size-md="4">
+                  <ion-select label="Locations" labelPlacement="floating" fill="outline" [(ngModel)]="s.id">
+                    <ion-select-option value="0">All Locations</ion-select-option>
+                    <ion-select-option *ngFor="let s of st" [value]="s.id">{{s.name}}</ion-select-option>
+                  </ion-select>
+                </ion-col>
+                <ion-button (click)="srch()">Search</ion-button>
+              </ion-row>
+
+
+              <ion-row class="table">
+                <ion-col>sl.no</ion-col>
+                <ion-col>name</ion-col>
+                <ion-col>short_name</ion-col>
+                <ion-col>Edit</ion-col>
+              </ion-row>
+              <ion-row *ngFor="let state of filteredstate; index as idx" class="table-state">
+                <ion-col class="state-table">{{ idx+1 }}</ion-col>
+                <ion-col class="state-table">{{ state.name }}</ion-col>
+                <ion-col class="state-table">{{ state.short_name }}</ion-col>
+                <ion-col class="state-table">
+                  <ion-icon name="pencil-outline" class="update-state" (click)="open_state_add()"
+                    (click)="editstate(state)"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+            <ng-template #nostates>
+              <ion-col>No states available.</ion-col>
+            </ng-template>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- --------------- update --------------- states---------- section ------------ -->
+    <ion-modal [isOpen]="is_stateadd_open" (didDismiss)="close_state_add()">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar color="light">
+            <ion-title>Edit State</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="close_state_add()">
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-input label="State Name" labelPlacement="floating" [(ngModel)]="selectedstate.name"
+            class="edit4"></ion-input><br>
+          <ion-input label="State Short_Name" labelPlacement="floating" [(ngModel)]="selectedstate.short_name"
+            class="edit5"></ion-input><br>
+        </ion-content>
+        <ion-footer>
+          <ion-toolbar color="light">
+            <ion-buttons slot="end">
+              <ion-button expand="full" color="success" (click)="updatestate()">Save Changes</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+      </ng-template>
+    </ion-modal>
+    <!-- ----------------- destrict -------------- section ----------------- -->
+
+    <div *ngIf="currentStep === 8">
+      <ion-row>
+        <ion-col size-md="6" sizeSm="3" offset="3">
+          <ion-card class="card6">
+            <ion-card-header>
+              <ion-toolbar color="warning" class="tool">
+                <ion-icon name="earth" slot="start"></ion-icon>
+                <ion-title> All Destrict</ion-title>
+              </ion-toolbar>
+              <!-- <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterdestrict()"
+                placeholder="Search Destrict"></ion-searchbar> -->
+            </ion-card-header>
+            <ion-card-content>
+              <ion-row class="table">
+                <ion-col>sl.no</ion-col>
+                <ion-col>name</ion-col>
+                <ion-col>short_name</ion-col>
+                <ion-col>Edit</ion-col>
+              </ion-row>
+              <ion-row *ngFor="let destrict of filtereddestrict" class="table-state">
+                <ion-col class="state-table">{{ destrict.id }}</ion-col>
+                <ion-col class="state-table">{{ destrict.name }}</ion-col>
+                <ion-col class="state-table">{{ destrict.short_name }}</ion-col>
+                <ion-col class="state-table">
+                  <ion-icon name="pencil-outline" class="update-state"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+            <ng-template #nodestricts>
+              <ion-col>No states available.</ion-col>
+            </ng-template>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

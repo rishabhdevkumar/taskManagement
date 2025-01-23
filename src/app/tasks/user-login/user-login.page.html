@@ -1,0 +1,87 @@
+<ion-content>
+
+  <!-- ---------- title and bittons options ------------------- -->
+  <ion-row class="row">
+    <ion-col>
+      <h2><b>task <span>Management</span></b></h2>
+    </ion-col>
+    <ion-col>
+      <ion-buttons class="btns">
+        <ion-button class="but1">Home</ion-button>
+        <ion-button class="but2">Work</ion-button>
+        <ion-button class="but3">Work</ion-button>
+        <ion-button class="but4">About Us</ion-button>
+        <ion-button class="but5">Project</ion-button>
+        <ion-button class="but6">Contect Us</ion-button>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
+  <!-- ------------- card content options ---------------- -->
+  <ion-grid class="grid">
+    <!-- <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h3>Front Side</h3>
+        </div>
+        <div class="flip-card-back">
+          <h3>Back Side</h3>
+          <p>This is the back of the card.</p>
+        </div>
+      </div>
+    </div> -->
+
+    <ion-row class="row1">
+      <ion-col class="left" size="3" sizeMd="3" sizeSm="3" offset="3">
+        <h1><b>User Can Login</b></h1>
+      </ion-col>
+      <ion-col class="flip-card" size="3" sizeMd="3" sizeSm="1.5">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <!-- <ion-buttons>
+                <ion-button>gor to login</ion-button>
+              </ion-buttons> -->
+              <h3><b>Go to user login</b></h3>
+            </div>
+            <div class="flip-back">
+              <ion-input label="Email" placeholder="enter email" labelPlacement="floating" [(ngModel)]="email">
+                <ion-icon name="mail" slot="end" class="ion-padding"></ion-icon>
+              </ion-input><br>
+              <ion-input label="password" [type]="passwordVisible ? 'text' : 'password'"
+                placeholder="enter your password" labelPlacement="floating" [(ngModel)]="password">
+                <ion-icon slot="end" [name]="passwordVisible ? 'eye' : 'eye-off'" (click)="togglePasswordVisibility()"
+                  class="ion-padding">
+                </ion-icon>
+              </ion-input><br>
+              <ion-buttons>
+                <ion-button expand="block" (click)="login()"><b>Login</b></ion-button>
+              </ion-buttons>
+              <p>create an Accounts?
+                <ion-label routerLink="/register">register</ion-label>
+              </p>
+            </div>
+          </div>
+        <!-- </div> -->
+        <!-- <ion-input label="Email" placeholder="enter email" labelPlacement="floating" [(ngModel)]="email">
+          <ion-icon name="mail" slot="end" class="ion-padding"></ion-icon>
+        </ion-input><br>
+        <ion-input label="password" [type]="passwordVisible ? 'text' : 'password'" placeholder="enter your password"
+          labelPlacement="floating" [(ngModel)]="password">
+          <ion-icon slot="end" [name]="passwordVisible ? 'eye' : 'eye-off'" (click)="togglePasswordVisibility()"
+            class="ion-padding">
+          </ion-icon>
+        </ion-input><br>
+        <ion-buttons>
+          <ion-button expand="block" (click)="login()"><b>Login</b></ion-button>
+        </ion-buttons>
+        <p>create an Accounts?
+          <ion-label routerLink="/register">register</ion-label>
+        </p> -->
+      </ion-col>
+      <ion-col class="right-back"></ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- --------------- footer option ----------------- -->
+  <ion-row class="foot">
+    <h1><b>task <span>Management</span></b></h1>
+  </ion-row>
+</ion-content>

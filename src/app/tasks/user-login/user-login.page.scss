@@ -1,0 +1,214 @@
+
+// ------------- title and buttons style -------------
+
+.row{
+    background-color: #000000;
+}
+.row span{
+    color: skyblue;
+}
+.btns {
+    padding-top: 20px;
+    display: flex;
+    gap: 20px; 
+  
+    // ------ btn 1 ----------
+    .but1 {
+      background-color:#000000;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+  
+      &:hover {
+        background-color: #45d628;
+        transform: translateY(-5px);
+      }
+  
+    }
+  
+    // ---------- btn 2 -------------
+    .but2 {
+        background-color: #000000;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    
+        &:hover {
+          background-color: #45d628;
+          transform: translateY(-5px);
+        }
+    
+      }
+  
+    //   --------- btn 3 ----------
+    .but3 {
+        background-color: #000000;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    
+        &:hover {
+          background-color: #45d628;
+          transform: translateY(-5px);
+        }
+    
+      }
+  
+    //   ---------- btn 4 ------------
+    .but4 {
+        background-color: #000000;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    
+        &:hover {
+          background-color: #45d628;
+          transform: translateY(-5px);
+        }
+    
+      }
+    //   --------------- btn 5 --------------
+    .but5 {
+        background-color: #000000;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    
+        &:hover {
+          background-color: #45d628;
+          transform: translateY(-5px);
+        }
+    
+      }
+    //   --------------- btn 6 ----------------
+    .but6 {
+        background-color: #000000;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    
+        &:hover {
+          background-color: #45d628;
+          transform: translateY(-5px);
+        }
+    
+      }
+  }
+  
+
+//  ------------------- card content option ----------------
+
+.grid{
+    background-color: rgb(3, 133, 105);
+    height: 90%;
+}
+.flip-card {
+  height: 445px;
+  width: 400px;
+  position: relative;
+}
+.flip-inner {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  // background: yellow;
+}
+.flip-inner:hover {
+  transform: rotateY(180deg);
+}
+.flip-front {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  background: rgb(3, 133, 105);
+  color: #333;
+  border-right: 3px solid black;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  border-radius: 20px;
+}
+.flip-front h3{
+  color: black;
+  margin: 50% 0% 0% 25%;
+}
+
+.flip-back { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  background: #ffff;
+  color: #333;
+  padding: 15% 0% 0% 2%;
+  transform: rotateY(180deg);
+  border: 3px solid black;
+  
+  border-radius: 20px;
+}
+.flip-back ion-input{
+  color: black;
+}
+.flip-back ion-button{
+  color: white;
+  background-color: black;
+  width: 100%;
+  border-radius: 20px;
+}
+.flip-back p{
+  color: black;
+}
+.row1{
+    display:  flex;
+    margin-top: 5%;
+}
+.left{
+    height: 450px;
+    background-color: rgb(131, 5, 63);
+    border-left: 3px solid black;
+    border-top: 3px solid black;
+    border-radius: 20px;
+    border-bottom: 3px solid black;
+}
+.left h1{
+    color: black;
+    padding-top: 40%;
+    padding-left: 25%;
+}
+// .right{
+//     height: 450px;
+//     background-color: white;
+//     border-right: 3px solid black;
+//     border-top: 3px solid black;
+//     border-bottom: 3px solid black;
+//     border-radius: 20px;
+//     padding-top: 5%;
+//   .right:hover{
+//     transform: rotateY(180deg);
+//   }
+// }
+// .right ion-input{
+//     color: black;
+// }
+// .right ion-button{
+//     color: white;
+//     background-color: black;
+//     width: 100%;
+//     border-radius: 20px;
+// }
+// .right p{
+//     color: black;
+// }
+// --------------- footer option --------------
+
+.foot{
+    background-color: rgb(32, 31, 31);
+    height: 50%;
+}
+.foot h1{
+  text-align: center;
+    padding-top: 10px;
+    padding-left: 40%;
+}
+.foot span{
+    color: skyblue;
+}
+.foot buttons{
+    padding-right: 40%;
+}

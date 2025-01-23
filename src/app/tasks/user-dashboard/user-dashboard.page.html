@@ -1,0 +1,220 @@
+<!-- ----------------------- split pane(menu bar) ------------------- -->
+
+<ion-menu menuId="main-menu" contentId="main" class="split">
+  <ion-header>
+  </ion-header>
+  <ion-content>
+    <br>
+    <div class="menu-item" (click)="navigateToSteps(1)">
+      <ion-icon name="grid-outline" class="menu-icon"></ion-icon>
+      <ion-label><b>Dashboard</b></ion-label>
+    </div>
+    <div class="menu-item" id="user-task-menu-button">
+      <ion-buttons>
+        <ion-icon name="briefcase-outline" class="menu-icon"></ion-icon>
+        <ion-label><b>Task</b></ion-label>
+        <ion-popover trigger="user-task-menu-button" [dismissOnSelect]="true" class="custom-popover">
+          <ng-template>
+            <ion-content>
+              <ion-list>
+                <ion-item [button]="true" class="custom" routerLink="../task">
+                  <ion-label>Business Task</ion-label>
+                </ion-item>
+                <ion-item [button]="true" class="custom" routerLink="../task">
+                  <ion-label>Development</ion-label>
+                </ion-item>
+                <ion-item [button]="true" class="custom" routerLink="../task">
+                  <ion-label>any tasks</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-buttons>
+    </div>
+    <div class="menu-item" id="user-project-menu-button">
+      <ion-buttons>
+        <ion-icon name="clipboard-outline" class="menu-icon"></ion-icon>
+        <ion-label><b>Project</b></ion-label>
+        <ion-popover trigger="user-project-menu-button" [dismissOnSelect]="true" class="custom-popover">
+          <ng-template>
+            <ion-content>
+              <ion-list>
+                <ion-item [button]="true" class="custom" [routerLink]="['../project']" [queryParams]="{ name: 'Business Project' }">
+                  <ion-label>Business Project</ion-label>
+                </ion-item>
+                <ion-item [button]="true" class="custom" [routerLink]="['../project']" [queryParams]="{ name: 'Development Project' }">
+                  <ion-label>Development Project</ion-label>
+                </ion-item>
+                <ion-item [button]="true" class="custom" [routerLink]="['../project']" [queryParams]="{ name: 'Personal Project' }">
+                  <ion-label>Personal Project</ion-label>
+                </ion-item>
+                <ion-item [button]="true" class="custom" [routerLink]="['../project']" [queryParams]="{ name: 'Any Project' }">
+                  <ion-label>Any Project</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-buttons>
+    </div>
+    <div class="menu-item" (click)="navigateToSteps(2)">
+      <ion-icon name="location" class="menu-icon"></ion-icon>
+      <ion-label><b>Location</b></ion-label>
+    </div>
+    <div class="menu-item" (click)="navigateToSteps(3)">
+      <ion-icon name="calendar" class="menu-icon"></ion-icon>
+      <ion-label><b>Calender</b></ion-label>
+    </div>
+    <div class="menu-item" routerLink="../about">
+      <ion-icon name="information-circle" class="menu-icon"></ion-icon>
+      <ion-label><b>About Us</b></ion-label>
+    </div>
+    <div class="menu-item" (click)="navigateToSteps(4)">
+      <ion-icon name="call" class="menu-icon"></ion-icon>
+      <ion-label><b>Contact Us</b></ion-label>
+    </div>
+  </ion-content>
+  <ion-item color="success">
+    <ion-icon name="Settings" class="ion-margin-end"></ion-icon>
+    <ion-label>
+      <b>Setting</b>
+    </ion-label>
+    <ion-buttons>
+      <ion-button id="profile-menu">
+        <ion-icon name="ellipsis-horizontal" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="profile-menu" triggerAction="click" [dismissOnSelect]="true">
+        <ng-template>
+          <ion-content>
+            <ion-item [button]="true" (click)="change_profile()">
+              <ion-icon name="pencil-outline" class="ion-margin-end"></ion-icon>
+              <ion-label>Change Profile</ion-label>
+            </ion-item>
+            <ion-item [button]="true" (click)="logout()">
+              <ion-icon name="log-out-outline" class="ion-margin-end"></ion-icon>
+              <ion-label>Logout</ion-label>
+            </ion-item>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+    </ion-buttons>
+  </ion-item>
+</ion-menu>
+<ion-router-outlet id="main"></ion-router-outlet>
+
+<!-- ----------------- dashboard content -------------- -->
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="grid">
+    <header>
+      <ion-buttons slot="start">
+        <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons>
+    </header>
+    <!-- --------------------- show --- task ---- section ----------- -->
+    <div>
+      <ion-row *ngIf="currentSteps === 1" class="profile-container">
+        <ion-col sizeMd="8" sizeSm="12" offsetMd="2">
+          <ion-card class="profile-card">
+            <div class="profile-container">
+              <img src="../../../assets/images/old.jpg" alt="Profile Image" class="profile-image">
+              <p class="profile-email">{{user?.email }}</p>
+              <h1>{{user?.name}}</h1>
+              <p class="profile-role">Web Developer</p>
+            </div>
+            <ion-row class="stats-row">
+              <ion-col sizeMd="4" sizeSm="4">
+                <ion-card class="stats-card p1">
+                  <p>Show Task</p>
+                </ion-card>
+              </ion-col>
+              <ion-col sizeMd="4" sizeSm="4">
+                <ion-card class="stats-card p2">
+                  <p>Project</p>
+                </ion-card>
+              </ion-col>
+              <ion-col sizeMd="4" sizeSm="4">
+                <ion-card class="stats-card p3" routerLink="./work">
+                  <p>Work</p>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- ----------------- country section --------------- -->
+    <div *ngIf="currentSteps === 2">
+      <ion-row>
+        <ion-col sizeMd="6" sizeSm="3" offset="3">
+          <ion-card class="card4">
+            <ion-card-header>
+              <ion-toolbar color="warning" class="tool">
+                <ion-icon name="earth" slot="start"></ion-icon>
+                <ion-title>All country</ion-title>
+              </ion-toolbar>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input placeholder="country"></ion-input>
+              <ion-select [(ngModel)]="filter.country_id" name="country_id" (ionChange)="load_state()">
+                <ion-select-option *ngFor="let c of co" [value]="c.id">{{c.name}}</ion-select-option>
+              </ion-select>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeMd="6" sizeSm="3" offset="3">
+          <ion-card class="card4">
+            <ion-card-header>
+              <ion-toolbar color="warning" class="tool">
+                <ion-icon name="earth" slot="start"></ion-icon>
+                <ion-title>All states</ion-title>
+              </ion-toolbar>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input placeholder="state"></ion-input>
+              <ion-select [(ngModel)]="filter.state_id" name="state_id">
+                <ng-container *ngIf="st?.length; else noData">
+                  <ion-select-option *ngFor="let s of st" [value]="s.id">{{ s.name }}</ion-select-option>
+                </ng-container>
+                <ng-template #noData>
+                  <ion-select-option disabled>No data available</ion-select-option>
+                </ng-template>
+              </ion-select>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+    </div>
+    <div *ngIf="currentSteps === 3">
+      <ion-row>
+        <ion-col sizeMd="8" sizeSm="4" offset="4">
+          <ion-card class="crd3">
+            <ion-card-header>
+              <ion-title>Show Calendar</ion-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-datetime displayFormat="MMMM DD, YYYY" min="2020-01-01" max="2025-12-31"
+                  placeholder="Select a date"></ion-datetime>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div>
+      <ion-row *ngIf="currentSteps === 4">
+        <ion-col sizeMd="11" sizeSm="5" offset="0.5">
+          <!-- <ion-card> -->
+
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,120 @@
+
+.column1{
+    background: linear-gradient(#422858, #054853);
+    height: 630px;
+}
+.column2{
+    background: linear-gradient(#34035c, #043755);
+    height: 630px;
+}
+
+
+.card1{
+    background-color: transparent;
+    height: 90%;
+    width: 50%;
+    margin-left: 20%;
+    margin-top: 5%;
+    border: 2px solid black;
+    border-radius: 30px;
+}
+.head{
+    padding-left: 40%;
+    padding-top: 1%;
+    height: 5%;
+    color: #d1b228;
+    border-bottom: 2px solid black ;
+}
+.div{
+    padding-left: 10%;
+}
+
+
+.card2{
+    background-color: #34035c;
+    height: 90%;
+    width: 60%;
+    margin-top: 5%;
+    margin-left: 20%;
+    border: 2px solid black;
+    border-radius: 30px;
+}
+  
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(#691c96,#0d9482,#025a2e);
+  
+    ion-card {
+      width: 100%;
+      max-width: 400px;
+      padding: 1rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+      ion-card-header {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+  
+      ion-card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+      }
+  
+      form {
+        .register-btn {
+          margin-top: 1rem;
+          border-radius: 20px;
+          font-size: 1.1rem;
+        }
+  
+        .footer-text {
+          text-align: center;
+          margin-top: 1rem;
+          font-size: 0.9rem;
+  
+          a {
+            color: #3880ff;
+            text-decoration: none;
+  
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  ion-footer {
+    ion-toolbar {
+      --background: #222;
+      --color: white;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 1rem;
+  
+      ion-card {
+        padding: 0.5rem;
+      }
+  
+      form .register-btn {
+        font-size: 1rem;
+      }
+  
+      .footer-text {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  

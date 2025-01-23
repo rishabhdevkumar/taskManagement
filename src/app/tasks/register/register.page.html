@@ -1,0 +1,61 @@
+
+<ion-content>
+  <ion-row class="form-container">
+    <ion-col size-md="6" sizeSm="3" offset="3">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Create an Account</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" [(ngModel)]="reg.name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" name="email" [(ngModel)]="reg.email" (ionInput)="validateEmail()"
+            required></ion-input>
+            <div *ngIf="emailError" style="color: red;">{{ emailError }}</div>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Date of Birth</ion-label>
+            <ion-input type="date" [(ngModel)]="reg.dob"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Phone</ion-label>
+            <ion-input 
+            type="tel" 
+            inputmode="numeric" 
+            [(ngModel)]="reg.phone" 
+            (ionInput)="onnumber()"
+            maxlength="10"
+            pattern="[0-9]*">
+          </ion-input>
+  <ion-text color="danger" *ngIf="reg.phone.length < 10 && reg.phone.length > 0">
+    Phone number must be exactly 10 digits.
+  </ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Address</ion-label>
+            <ion-input type="text" [(ngModel)]="reg.address"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input  type="password" placeholder="Enter 8 digits password"
+            [(ngModel)]="reg.password" 
+            (ionInput)="password()"
+            maxlength="8"
+            pattern="[0-7]*"></ion-input>
+            <ion-text color="danger" *ngIf="reg.password.length < 7 && reg.password.length > 0">
+              There in special char or numbers 8 digits.
+            </ion-text>
+          </ion-item>
+          <ion-button expand="block" (click)="register()" color="primary">Register</ion-button>
+          <div class="footer-text">
+            <p>Already have an account? <a href="/user-login">Login</a></p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ projectName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="grid">
+    <ion-row *ngFor="let card of cards">
+      <ion-col sizeMd="3" sizeSm="1.5" offset="1">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ card.title }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ card.content }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeMd="3" sizeSm="1.5" offset="0.5">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ card.title }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeMd="3" sizeSm="1.5" offset="0.5">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ card.title }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
