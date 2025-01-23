@@ -1,20 +1,91 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-row class="first">
+    <ion-col class="left" size="4">
+      <h1><b>task <span class="man">Management</span></b></h1>
+
+      <img src="../../assets/images/old.jpg" class="img">
+    </ion-col>
+    <ion-col class="right" size="8">
+      <ion-buttons class="buts">
+        <ion-button class="but2" routerLink="../about">About Us</ion-button>
+        <ion-button class="but1" routerLink="../contact">Contact Us</ion-button>
+        <img src="../../assets/images/t.png" alt="Logo" class="logo-img">
+      </ion-buttons>
+      
+      <div class="container">
+        <a>Welcome To <h1><b>task Management</b></h1></a>
+      </div>
+      <ion-row>
+        <ion-col sizeMd="8" sizeSm="4" offset="1">
+          <ion-card class="card">
+            <ion-header class="head">
+              <h5><b>Login Field</b></h5>
+            </ion-header>
+            <ion-card-content>
+              <ion-buttons>
+                <ion-button class="btn1" routerLink="/user-login">Login</ion-button>
+                <ion-button class="btn2" routerLink="/register">Register</ion-button>
+                <ion-button class="btn3" routerLink="/admin-login">Admin Login</ion-button>
+              </ion-buttons>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <!-- ----------------- marquee section -------------- -->
+
+  <ion-row class="row">
+    <div class="scrolling">
+      <h5><b></b><p>This website is the testing, tracking, and reporting tasks to ensure their completion in a timely and efficient manner.</h5>
+    </div>
+  </ion-row>
+  <!-------------- Footer Section ----------------->
+
+  <ion-footer class="foot">
+    <ion-row>
+      <!-- <ion-col sizeMd="2" sizeSm="1" offset="0.5">
+        <ion-item>
+          <ion-icon name="home" class="ion-padding"></ion-icon>
+          Home
+        </ion-item>
+      </ion-col> -->
+      <ion-col sizeMd="2" sizeSm="1" offset="1">
+        <ion-item>
+          <ion-icon name="call" class="ion-padding"></ion-icon>
+          Contact Us
+        </ion-item>
+        <p>
+          phone no ;-
+          8756556464 <br>
+          email id :-
+          taskmanagementgmail.com
+        </p>
+      </ion-col>
+      <ion-col sizeMd="2" sizeSm="1" offset="1">
+        <ion-item>
+          <ion-icon name="location-sharp" class="ion-padding"></ion-icon>
+          Location
+        </ion-item>
+        <p>Balrampur, Gamharia<br>
+          jamshedpur, Jharkhand<br>
+          India, 832108
+        </p>
+      </ion-col>
+      <ion-col sizeMd="2" sizeSm="1" offset="1">
+        <ion-item>
+          <ion-icon name="language-outline" class="ion-padding"></ion-icon>
+          Language
+          <ion-select slot="end">
+            <ion-select-option></ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <h1 class="task"><b>task <span>Management</span></b></h1>
+    </ion-row>
+  </ion-footer>
+
 </ion-content>
