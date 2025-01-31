@@ -13,22 +13,18 @@ export class ApiService {
   
   async post(path: string, body: any={}, type: string="JSON") {
     try {
-      // Prepare headers, excluding Content-Type for FormData
       let headers: any = {
         "Authorization": localStorage.getItem("token") || ""
       };
-  
-      // Only add Content-Type if the body is not FormData
+
       if (type == "JSON") {
         headers["Content-Type"] = "application/json";
       }
-  
       let res = await fetch(environment.api_url + path, {
         method: "POST",
         headers: headers,
         body: type=="JSON" ? JSON.stringify(body): body
       });
-  
       if (!res.ok) {
         return { ok: false, status: res.status, msg: "Something went wrong" };
       } else {
@@ -90,6 +86,32 @@ export class ApiService {
       return { ok: false, error: e, msg: "Something went wrong" };
     }
   }
+
+
+
+  async fetch_blob(path: string, body: any = {}) 
+  {
+    try {
+      let res = await fetch(environment.api_url + path,
+        {
+          method: "POST",
+          headers: 
+          {
+            "Content-Type" : "application/json",
+        "Authorization": localStorage.getItem("token") || ""
+      },
+      body: JSON.stringify(body)
+    })
+      if (!res.ok) {
+        return false;
+      } else {
+        let data =  await res.blob()
+        return data;
+      }
+    }catch(e){
+      return false;
+      }
+    }
 
 
   async isLoggedIn(){

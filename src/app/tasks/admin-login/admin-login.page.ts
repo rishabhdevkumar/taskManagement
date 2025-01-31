@@ -45,4 +45,11 @@ export class AdminLoginPage implements OnInit {
     }
   }
 
+
+  passwordVisible: boolean = false; 
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
 }

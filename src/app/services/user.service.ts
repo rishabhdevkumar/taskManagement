@@ -16,20 +16,20 @@ export class UserService {
     return !!localStorage.getItem('token');
   }
 
-    // /  --------------- add fn -------------
+    // /  --------------- add service -------------
 
     async add(u: user ){ 
       let data = await this.api.post("/user/add",u) 
       return data;
     }
 
-    // ------------- getall fn -------------
+    // ------------- getall service -------------
     async getall(){
       let data = await this.api.post("/user/getall");
       return data;
     }
   
-    // --------------- authenticate -------------
+    // --------------- authenticate service-------------
   
     async authenticate(
       email: string,
@@ -42,28 +42,50 @@ export class UserService {
       return data;
   
     }
-    // ------------------ user update ----------------
+    // ------------------ update service----------------
      async user_update(u: user){ 
         let data = await this.api.post("/user/update", u) 
         return data;
       }
 
-    // ------------- user search -------------------
+    // ------------- search service-------------------
     async search( u : userFilter){
         let data = await this.api.post("/user/search",u);
         return data;
     
       }
-
-      async update_profile_self(image: Blob){
-        let fd = new FormData()
-        fd.append("profile",image)
-        let data = await this.api.post_form("/user/update_profile_self",fd);
-        return data
+    // ------------------ get self service -----------------
+      async get_self() {
+        try {
+          let data = await this.api.post("/user/get_self", {});
+          return Array.isArray(data) && data.length > 0 ? data[0] : null;
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          return null;
+        }
       }
+    // -------------------- profile update service ------------------
 
-      async get_profile_self(){
-        let data = await this.api.post("/user/get_profile_self")
+      async update_profile_self(image: Blob) {
+        try {
+          let fd = new FormData();
+          fd.append("profile", image);
+          return await this.api.post_form("/user/update_profile_self", fd);
+        } catch (error) {
+          console.error("Error updating profile:", error);
+          return null;
+        }
       }
-
+    
+      // ---------------------- get [profile service ----------------]
+      async get_profile_self() {
+        try {
+          let data = await this.api.fetch_blob("/user/get_profile_self");
+          return data instanceof Blob ? data : null;
+        } catch (error) {
+          console.error("Error fetching profile image:", error);
+          return null;
+        }
+      }
+    
 }

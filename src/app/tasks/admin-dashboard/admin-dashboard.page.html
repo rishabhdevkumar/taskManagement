@@ -241,13 +241,13 @@
               <ion-row>
                 <ion-col sizeMd="4">
                   <ion-input type="text" labelPlacement="floating" fill="outline" label="Name"
-                    placeholder="enter user name"></ion-input>
+                    placeholder="enter user name" [(ngModel)]="u.name"></ion-input>
                 </ion-col>
                 <ion-col size-md="4">
                   <ion-input type="text" labelPlacement="floating" fill="outline" label="Email"
-                    placeholder="enter user email"></ion-input>
+                    placeholder="enter user email" [(ngModel)]="u.email"></ion-input>
                 </ion-col>
-                <ion-button (click)="search()">Search</ion-button>
+                <ion-button (click)="src()">Search</ion-button>
               </ion-row>
             </ion-card-content>
             <table style="width: 100%; text-align: center; " border="2px">
@@ -358,10 +358,8 @@
             </ion-toolbar>
           </ion-card-header>
           <ion-card-content>
-            <!-- <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUsers()" placeholder="Search bar">
-            </ion-searchbar> -->
-            <br>
-            <div *ngIf="filtertasks.length> 0; else noUsers">
+            
+            <!-- <div *ngIf="filtertasks.length> 0; else noUsers">
               <ion-row>
                 <ion-col><b>SL.NO</b></ion-col>
                 <ion-col><b>NAME</b></ion-col>
@@ -377,7 +375,29 @@
                   <ion-button color="primary">Action</ion-button>
                 </ion-col>
               </ion-row>
-            </div>
+            </div> -->
+            <table style="width: 100%; text-align: center; " border="2px">
+              <tr class="table-header">
+                <td>S.No</td>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Action</td>
+                <td>Edit</td>
+                <td>Delete</td>
+              </tr>
+              <tr *ngFor="let tsk of filtertasks" class="row1">
+                <td>{{tsk.id}}</td>
+                <td>{{tsk.name}}</td>
+                <td>{{tsk.description}}</td>
+                <td>{{tsk.is_active ? 'Active' : 'Inactive'}}</td>
+                <td>
+                  <ion-icon name="create-outline" class="ion-padding"></ion-icon>
+                </td>
+                <td>
+                  <ion-icon name="trash-outline" class="ion-padding"></ion-icon>
+                </td>
+              </tr>
+            </table>
             <!----- No Tasks Found --------->
             <ng-template #noUsers>
               <p>No Tasks found.</p>
@@ -402,22 +422,27 @@
             </ion-card-header>
             <ion-card-content>
               <ion-row>
-                <ion-col sizeMd="4">
-                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Code"
-                    placeholder="enter country code"></ion-input>
+                <ion-col size-md="4">
+                  <ion-input 
+                    labelPlacement="floating" 
+                    fill="outline" 
+                    label="Code"
+                    placeholder="Enter country code"
+                    [(ngModel)]="c.code">
+                  </ion-input>
                 </ion-col>
                 <ion-col size-md="4">
-                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Name"
-                    placeholder="enter country name"></ion-input>
-                </ion-col>
-                <ion-col size-md="4">
-                  <ion-select label="Locations" labelPlacement="floating" fill="outline" [(ngModel)]="c.id">
-                    <ion-select-option value="0">All Locations</ion-select-option>
-                    <ion-select-option *ngFor="let c of co" [value]="c.id">{{c.name}}</ion-select-option>
-                  </ion-select>
+                  <ion-input 
+                    labelPlacement="floating" 
+                    fill="outline" 
+                    label="Name"
+                    placeholder="Enter country name"
+                    [(ngModel)]="c.name">
+                  </ion-input>
                 </ion-col>
                 <ion-button (click)="search()">Search</ion-button>
               </ion-row>
+              
             </ion-card-content>
             <table style="width: 100%; text-align: center; " border="2px">
               <tr class="country-header">
@@ -465,7 +490,7 @@
         <ion-footer>
           <ion-toolbar color="light">
             <ion-buttons slot="end">
-              <ion-button expand="full" color="success" (click)="updatecountry()">Save Changes</ion-button>
+              <ion-button expand="full" color="success" (click)="updatecountry()">Save</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-footer>
@@ -482,29 +507,29 @@
                 <ion-icon name="earth" slot="start"></ion-icon>
                 <ion-title> All State</ion-title>
               </ion-toolbar>
-              <!-- <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterstates()"
-                placeholder="Search users"></ion-searchbar> -->
             </ion-card-header>
             <ion-card-content>
-
               <ion-row>
-                <ion-col sizeMd="4">
-                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Name"
-                    placeholder="enter state name" [(ngModel)]="s.name"></ion-input>
+                <ion-col size-md="4">
+                  <ion-input 
+                    labelPlacement="floating" 
+                    fill="outline" 
+                    label="short name"
+                    placeholder="Enter state short name"
+                    [(ngModel)]="s.short_name">
+                  </ion-input>
                 </ion-col>
                 <ion-col size-md="4">
-                  <ion-input type="text" labelPlacement="floating" fill="outline" label="Short_name"
-                    placeholder="enter state short_name" [(ngModel)]="s.short_name"></ion-input>
-                </ion-col>
-                <ion-col size-md="4">
-                  <ion-select label="Locations" labelPlacement="floating" fill="outline" [(ngModel)]="s.id">
-                    <ion-select-option value="0">All Locations</ion-select-option>
-                    <ion-select-option *ngFor="let s of st" [value]="s.id">{{s.name}}</ion-select-option>
-                  </ion-select>
+                  <ion-input 
+                    labelPlacement="floating" 
+                    fill="outline" 
+                    label="Name"
+                    placeholder="Enter state name"
+                    [(ngModel)]="s.name">
+                  </ion-input>
                 </ion-col>
                 <ion-button (click)="srch()">Search</ion-button>
               </ion-row>
-
 
               <ion-row class="table">
                 <ion-col>sl.no</ion-col>

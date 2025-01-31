@@ -6,6 +6,7 @@ export interface user{
     dob?: string,
     phone?: any,
     address?: string
+    profile?:JSON
     is_active?: boolean
 }
 export interface userFilter{
@@ -75,4 +76,5 @@ export interface task{
     id?:number
     name?: string
     description?: string
+    is_active?: boolean
 }

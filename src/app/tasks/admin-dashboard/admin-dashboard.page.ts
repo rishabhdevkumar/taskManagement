@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { admin, country, countryFilter, destrict, state, stateFilter, task, user } from 'src/app/interfaces';
+import { admin, country, countryFilter, destrict, state, stateFilter, task, user, userFilter } from 'src/app/interfaces';
 import { UtilService } from 'src/app/services/util.service';
 import { CountryService } from 'src/app/services/country.service';
 import { StateService } from 'src/app/services/state.service';
@@ -127,6 +127,28 @@ export class AdminDashboardPage implements OnInit {
         await this.ut.toast('user Added successfully!');
       }
     }
+  // --------------- user saerch ----------
+  u: userFilter = {
+    id : '0',
+    rc: 20,
+    page: 1,
+    name: '',
+    email: ''
+  }
+  uses: user[] = []
+  async src() {
+    let data: any[] = await this.us.search(this.u)
+    if (data.length == 0) {
+
+
+    } else {
+      this.uses = data;
+    }
+  }
+  stus() {
+    this.c.page = 1
+    this.src()
+  }
 // ----------  getall  -----------
 
   async loadAllUsers() {
@@ -219,7 +241,9 @@ export class AdminDashboardPage implements OnInit {
   c: countryFilter = {
     id : '0',
     rc: 20,
-    page: 1
+    page: 1,
+    name: '',
+    code: ''
   }
   co: country[] = []
   async search() {
@@ -291,7 +315,9 @@ export class AdminDashboardPage implements OnInit {
   s: stateFilter = {
     id : '0',
     rc: 20,
-    page: 1
+    page: 1,
+    name: '',
+    short_name: ''
   }
   st: state[] = [];
   async srch() {
@@ -302,20 +328,20 @@ export class AdminDashboardPage implements OnInit {
       this.st = data;
     }
   }
-  action() {
+  statues() {
     this.s.page = 1
     this.srch()
   }
 
-  async loadstates() {
-    try {
-      this.st = await this.ss.state_all();
-      this.filteredstate = this.st;
-      console.log(this.filteredstate);
-    } catch (error) {
-      console.error('Error loading countries:', error);
-    }
-  }
+  // async loadstates() {
+  //   try {
+  //     this.st = await this.ss.state_all();
+  //     this.filteredstate = this.st;
+  //     console.log(this.filteredstate);
+  //   } catch (error) {
+  //     console.error('Error loading countries:', error);
+  //   }
+  // }
 
   async loadAllstate() {
     try {

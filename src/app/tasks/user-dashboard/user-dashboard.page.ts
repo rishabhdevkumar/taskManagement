@@ -39,7 +39,7 @@ export class UserDashboardPage implements OnInit {
   ) { }
 
   user:user  | null = null; 
-  projectName: string = '';  // Declare the variable
+  projectName: string = '';  
 
   ngOnInit() {
     const userData = localStorage.getItem('user');
@@ -86,10 +86,29 @@ export class UserDashboardPage implements OnInit {
 
   // -------------------- change ---------- profile --------- fn ----------
 
-  self: user = {}
-  profile:any = ""
-  async load(){
-    // this.self = await this.us.get_self();
+  self: any = {}; // Use 'any' or define a proper User interface
+  profile: string | null = "";
+
+  async load() {
+    try {
+      this.self = await this.us.get_self();
+      const profile_data = await this.us.get_profile_self();
+
+      if (profile_data instanceof Blob) {
+        this.profile = URL.createObjectURL(profile_data);
+      } else {
+        console.warn("Invalid profile data format");
+      }
+    } catch (error) {
+      console.error("Error loading user data:", error);
+    }
+  }
+
+
+  ngOnDestroy() {
+    if (this.profile) {
+      URL.revokeObjectURL(this.profile);
+    }
   }
 
 async change_profile(){
@@ -106,7 +125,6 @@ logout(){
 
 navigateToOption(option: number): void {
   console.log('Navigating to Option', option);
-  // Add logic for navigation based on the option
 }
 
 

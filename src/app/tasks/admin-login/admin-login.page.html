@@ -27,8 +27,9 @@
           <ion-input label="Email" placeholder="enter email" labelPlacement="floating" [(ngModel)]="email">
           <ion-icon name="mail" slot="end" class="ion-padding"></ion-icon>
           </ion-input><br>
-        <ion-input label="password" type="password" placeholder="enter your password" labelPlacement="floating" [(ngModel)]="password">
-          <ion-icon name="eye-off" slot="end" class="ion-padding"></ion-icon>
+        <ion-input label="password"  [type]="passwordVisible ? 'text' : 'password'"
+         placeholder="enter your password" labelPlacement="floating" [(ngModel)]="password">
+          <ion-icon  [name]="passwordVisible ? 'eye' : 'eye-off'" (click)="togglePasswordVisibility()" slot="end" class="ion-padding"></ion-icon>
         </ion-input><br>
          <ion-buttons>
           <ion-button expand="block" (click)="login()"><b>Login</b></ion-button>
